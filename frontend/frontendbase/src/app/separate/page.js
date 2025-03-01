@@ -1,11 +1,8 @@
 "use client";
 import Image from "next/image";
 import SongScrubber from "../components/songscrubber";
-import VocalStem from "../components/vocalstem";
-import DrumStem from "../components/drumstem";
-import InstrumentStem from "../components/instrumentstem";
-import BassStem from "../components/bassstem";
 import StemCircle from "../components/stemcircle";
+import Link from "next/link";
 
 export default function Separate() {
   return (
@@ -14,7 +11,11 @@ export default function Separate() {
         <ul className="flex justify-between">
           <li className="italic font-bold text-3xl">PULSIFY</li>
           <div className="mr-24 flex space-x-10">
-            <li className="text-xl">about</li>
+            <li>
+              <Link href="/about">
+                <span className="text-xl">about</span>
+              </Link>
+            </li>
             <li className="text-xl">options</li>
           </div>
         </ul>

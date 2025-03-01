@@ -8,13 +8,9 @@ const ParticlesBackground = () => {
     await loadSlim(engine);
   }, []);
 
-  const particlesLoaded = useCallback(async (container) => {
-    // You can perform actions after the particles are loaded here
-  }, []);
+  const particlesLoaded = useCallback(async (container) => {}, []);
 
   const options = {
-    // Your particles configuration options here
-    // Example:
     particles: {
       number: {
         value: 80,
