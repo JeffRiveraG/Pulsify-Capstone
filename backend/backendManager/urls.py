@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from audio_processing import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('audio-separation/', views.audio_separation_view, name='audio_separation'),
 ]
