@@ -1,4 +1,5 @@
-import { useState } from "react";
+import ParticlesBackground from "./components/particles";
+import Link from "next/link";
 
 export default function Home() {
   // State to store the selected file
@@ -28,38 +29,25 @@ export default function Home() {
   };
 
   return (
-    <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
-      <h1>Capstone Project</h1>
-      
-      {/* MP3 file input */}
-      <div>
-        <input 
-          type="file" 
-          accept=".mp3" 
-          onChange={handleFileChange}
-        />
-      </div>
-      
-      {file && (
-        <div style={{ marginTop: "1rem" }}>
-          <p>Selected file: {file.name}</p>
+    <div className="">
+      <ParticlesBackground className="absolute inset-0 z-0" />
+      <div className="flex flex-col justify-center items-center space-y-24 text-white min-h-screen">
+        <h1 className="text-6xl flex justify-center font-bold">PULSIFY</h1>
+        <p className="text-2xl leading-tight tracking-tight text-white w-[504px] h-[124px] text-center">
+          A simplified audio remix Webapp.
+          <br /> Listen to isolated stems of a song.
+          <br />
+          Karaoke? Want to listen to beats?
+          <br />
+          Upload a song and take a listen.
+        </p>
+        <div className="flex justify-center items-center button">
+          <Link href="/separate">
+            <button className="text-4xl font-bold rounded-full w-40 h-40 bg-[#595959] text-[#949494] hover:text-white hover:w-48 hover:h-48 transition-all duration-500 ease-in-out">
+              <span>Peep</span>
+            </button>
+          </Link>
         </div>
-      )}
-      
-      {/* Buttons to toggle audio components */}
-      <div style={{ marginTop: "2rem", display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-        <button onClick={() => toggleCategory("bass")}>
-          {toggles.bass ? "Disable Bass" : "Enable Bass"}
-        </button>
-        <button onClick={() => toggleCategory("vocals")}>
-          {toggles.vocals ? "Disable Vocals" : "Enable Vocals"}
-        </button>
-        <button onClick={() => toggleCategory("instrumentals")}>
-          {toggles.instrumentals ? "Disable Instrumentals" : "Enable Instrumentals"}
-        </button>
-        <button onClick={() => toggleCategory("percussion")}>
-          {toggles.percussion ? "Disable Percussion" : "Enable Percussion"}
-        </button>
       </div>
     </div>
   );
