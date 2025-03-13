@@ -131,4 +131,8 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 # Minimal media settings for serving uploaded/processed files
 MEDIA_URL = '/media/'
+<<<<<<< Updated upstream
 MEDIA_ROOT = BASE_DIR / 'media'
+=======
+MEDIA_ROOT = BASE_DIR / 'media'
+>>>>>>> Stashed changes
