@@ -1,5 +1,8 @@
+"use client";
+import {useState} from "react";
 import ParticlesBackground from "./components/particles";
 import Link from "next/link";
+
 
 export default function Home() {
   // State to store the selected file

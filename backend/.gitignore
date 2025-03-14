@@ -4,3 +4,12 @@ venv/
 __pycache__/
 *.pyc
 *.pyo
+
+
+# Ignore media folder
+media/
+
+# Ignore the pretrained_models stuff
+pretrained_models/
+
+# Ignore uploads 
