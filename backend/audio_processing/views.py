@@ -56,8 +56,4 @@ def adjust_volume(request):
     
     # Return the absolute URL
     file_url = request.build_absolute_uri('/media/adjusted/' + output_name)
-<<<<<<< Updated upstream
     return JsonResponse({'file_url': file_url})
-=======
-    return JsonResponse({'file_url': file_url})
->>>>>>> Stashed changes
