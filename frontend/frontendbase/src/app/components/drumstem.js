@@ -1,14 +1,31 @@
+import React, { forwardRef } from "react";
 import Image from "next/image";
 
-export default function DrumStem({ url }) {
+const DrumStem = forwardRef(({ url, muted, onToggle }, ref) => {
   return (
     <div
       id="circle2"
-      className="relative flex flex-col justify-center items-center w-36 h-36 rounded-full source-sound"
+      className="relative flex flex-col justify-center items-center w-36 h-36 rounded-full source-sound cursor-pointer"
+      onClick={onToggle}
     >
       <div className="absolute inset-0 bg-[#E3E3E3] blur-lg rounded-full"></div>
       {url ? (
-        <audio controls src={url} className="w-full" />
+        <>
+          <audio
+            ref={ref}
+            src={url}
+            muted={muted}
+            preload="auto"
+            style={{ position: 'absolute', left: '-10000px' }}
+          />
+          <Image
+            src="/images/drums.svg"
+            alt="Drums"
+            width={54}
+            height={63}
+            className={`relative z-10 ${muted ? "opacity-50" : ""}`}
+          />
+        </>
       ) : (
         <Image
           src="/images/drums.svg"
@@ -20,4 +37,6 @@ export default function DrumStem({ url }) {
       )}
     </div>
   );
-}
+});
+
+export default DrumStem;

@@ -7,45 +7,50 @@ function formatTime(seconds) {
   return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
 }
 
-export default function SongScrubber({ audioRef }) {
+export default function SongScrubber({ audioRefs }) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volumeLevel, setVolumeLevel] = useState(100);
   const [isPlaying, setIsPlaying] = useState(false);
 
+  // Use the first audio element for time tracking
+  const primaryAudio = audioRefs[0]?.current;
+
   useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
+    if (!primaryAudio) return;
     
     const updateTime = () => {
-      setCurrentTime(audio.currentTime);
-      setDuration(audio.duration);
+      setCurrentTime(primaryAudio.currentTime);
+      setDuration(primaryAudio.duration);
     };
 
     const handlePlay = () => setIsPlaying(true);
     const handlePause = () => setIsPlaying(false);
 
-    audio.addEventListener("timeupdate", updateTime);
-    audio.addEventListener("loadedmetadata", updateTime);
-    audio.addEventListener("play", handlePlay);
-    audio.addEventListener("pause", handlePause);
+    primaryAudio.addEventListener("timeupdate", updateTime);
+    primaryAudio.addEventListener("loadedmetadata", updateTime);
+    primaryAudio.addEventListener("play", handlePlay);
+    primaryAudio.addEventListener("pause", handlePause);
 
     return () => {
-      audio.removeEventListener("timeupdate", updateTime);
-      audio.removeEventListener("loadedmetadata", updateTime);
-      audio.removeEventListener("play", handlePlay);
-      audio.removeEventListener("pause", handlePause);
+      primaryAudio.removeEventListener("timeupdate", updateTime);
+      primaryAudio.removeEventListener("loadedmetadata", updateTime);
+      primaryAudio.removeEventListener("play", handlePlay);
+      primaryAudio.removeEventListener("pause", handlePause);
     };
-  }, [audioRef]);
+  }, [primaryAudio, audioRefs]);
 
   const handleScrub = (e) => {
-    if (!audioRef.current || !duration) return;
-    // Use native offsetX relative to the container's width.
+    if (!primaryAudio || !duration) return;
     const container = e.currentTarget;
     const clickX = e.nativeEvent.offsetX;
     const containerWidth = container.offsetWidth;
     const newTime = (clickX / containerWidth) * duration;
-    audioRef.current.currentTime = newTime;
+    audioRefs.forEach(ref => {
+      if (ref.current) {
+        ref.current.currentTime = newTime;
+      }
+    });
   };
 
   const progressPercentage = duration ? (currentTime / duration) * 100 : 0;
@@ -53,17 +58,39 @@ export default function SongScrubber({ audioRef }) {
   const handleVolumeChange = (e) => {
     const newVol = Number(e.target.value);
     setVolumeLevel(newVol);
-    if (audioRef.current) {
-      audioRef.current.volume = newVol / 100;
-    }
+    audioRefs.forEach(ref => {
+      if (ref.current) {
+        ref.current.volume = newVol / 100;
+      }
+    });
   };
 
-  const togglePlayPause = () => {
-    if (!audioRef.current) return;
-    if (isPlaying) {
-      audioRef.current.pause();
+  const togglePlayPause = async () => {
+    if (!primaryAudio) return;
+    if (primaryAudio.paused) {
+      try {
+        // Ensure each audio element is loaded
+        await Promise.all(
+          audioRefs.map(async (ref) => {
+            if (ref.current) {
+              ref.current.load();
+              // Force unmute just in case
+              ref.current.muted = false;
+              return ref.current.play().catch(err => {
+                console.error("Play error for element:", ref.current, err);
+              });
+            }
+          })
+        );
+        setIsPlaying(true);
+      } catch (error) {
+        console.error("Error during play:", error);
+      }
     } else {
-      audioRef.current.play();
+      audioRefs.forEach(ref => {
+        if (ref.current) ref.current.pause();
+      });
+      setIsPlaying(false);
     }
   };
 

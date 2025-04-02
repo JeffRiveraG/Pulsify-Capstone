@@ -25,6 +25,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('adjust_volume/', views.adjust_volume, name='adjust_volume'),
+    # New endpoints for Spleeter/Whisper integration:
+    path('audio-separation/', views.process_audio_view, name='audio_separation'),
+    path('process_lyrics/', views.process_lyrics_view, name='process_lyrics'),
 ]
 
 # Serve media files in development
