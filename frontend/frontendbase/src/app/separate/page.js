@@ -94,7 +94,7 @@ export default function Separate() {
                                 <span className="text-xl">about</span>
                             </Link>
                         </li>
-                        <li className="text-xl">options</li>
+
                     </div>
                 </ul>
             </nav>
@@ -141,11 +141,23 @@ export default function Separate() {
                     />
 
                     <div className="flex space-x-20">
-                        <VocalStem muted={muteStates[0]} onToggle={() => toggleMute(0)} />
-                        <DrumStem muted={muteStates[1]} onToggle={() => toggleMute(1)} />
-                        <InstrumentStem muted={muteStates[3]} onToggle={() => toggleMute(3)} />
-                        <BassStem muted={muteStates[2]} onToggle={() => toggleMute(2)} />
+                        {[0, 1, 3, 2].map((index, i) => {
+                            const StemComponent = [VocalStem, DrumStem, InstrumentStem, BassStem][i];
+                            const stemName = ["vocals", "drums", "instrument", "bass"][i];
+
+                            return (
+                                <div
+                                    key={stemName}
+                                    className={`w-36 h-36 rounded-full transition-colors duration-300 flex justify-center items-center ${muteStates[index] ? "bg-[#535353]" : "bg-[#E3E3E3]"
+                                        }`}
+                                    onClick={() => toggleMute(index)}
+                                >
+                                    <StemComponent muted={muteStates[index]} />
+                                </div>
+                            );
+                        })}
                     </div>
+
                 </div>
             )}
         </div>
