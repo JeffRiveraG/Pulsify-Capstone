@@ -50,6 +50,83 @@ export default function About() {
                         height={288}
                         className="rounded-2xl"
                     />
+                    <p className="text-2xl">Backend Developers</p>
+                    <div>
+                        <div className="flex flex-row space-x-24">
+                            <div className="flex flex-col space-y-9">
+                                <p className="font-bold text-xl">Alex Reyes</p>
+                                <div className="flex space-x-24">
+                                    <Image
+                                        src="/images/github logo.svg"
+                                        alt="github"
+                                        width={50}
+                                        height={50}
+                                    />
+                                    <Image
+                                        src="/images/email logo.svg"
+                                        alt="email"
+                                        width={50}
+                                        height={50}
+                                    />
+                                </div>
+                                <Image
+                                    src="/images/Alex.jpg"
+                                    alt="Alex"
+                                    width={288}
+                                    height={288}
+                                    className="rounded-2xl"
+                                />
+                            </div>
+                            <div className="flex flex-col space-y-9">
+                                <p className="font-bold text-xl">Raja Pradhan</p>
+                                <div className="flex space-x-24">
+                                    <Image
+                                        src="/images/github logo.svg"
+                                        alt="github"
+                                        width={50}
+                                        height={50}
+                                    />
+                                    <Image
+                                        src="/images/email logo.svg"
+                                        alt="email"
+                                        width={50}
+                                        height={50}
+                                    />
+                                </div>
+                                <Image
+                                    src="/images/Raja.jpg"
+                                    alt="Raja"
+                                    width={288}
+                                    height={288}
+                                    className="rounded-2xl"
+                                />
+                            </div>
+                            <div className="flex flex-col space-y-9">
+                                <p className="font-bold text-xl">Jonathan Fagoaga</p>
+                                <div className="flex space-x-24">
+                                    <Image
+                                        src="/images/github logo.svg"
+                                        alt="github"
+                                        width={50}
+                                        height={50}
+                                    />
+                                    <Image
+                                        src="/images/email logo.svg"
+                                        alt="email"
+                                        width={50}
+                                        height={50}
+                                    />
+                                </div>
+                                <Image
+                                    src="/images/johnathan.jpg"
+                                    alt="Johnathan"
+                                    width={288}
+                                    height={288}
+                                    className="rounded-2xl"
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
