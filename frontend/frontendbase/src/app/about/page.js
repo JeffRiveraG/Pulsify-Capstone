@@ -30,12 +30,14 @@ export default function About() {
                     <p className="text-2xl">Frontend Developer</p>
                     <p className="font-bold text-xl">Jeffrey Rivera</p>
                     <div className="flex space-x-24">
-                        <Image
-                            src="/images/github logo.svg"
-                            alt="github"
-                            width={50}
-                            height={50}
-                        />
+                        <a href="https://github.com/JeffRiveraG" target="_blank" rel="noopener noreferrer">
+                            <Image
+                                src="/images/github logo.svg"
+                                alt="github"
+                                width={50}
+                                height={50}
+                            />
+                        </a>
                         <Image
                             src="/images/email logo.svg"
                             alt="email"
@@ -56,12 +58,14 @@ export default function About() {
                             <div className="flex flex-col space-y-9">
                                 <p className="font-bold text-xl">Alex Reyes</p>
                                 <div className="flex space-x-24">
-                                    <Image
-                                        src="/images/github logo.svg"
-                                        alt="github"
-                                        width={50}
-                                        height={50}
-                                    />
+                                    <a href="https://github.com/Alex-R-Projects" target="_blank" rel="noopener noreferrer">
+                                        <Image
+                                            src="/images/github logo.svg"
+                                            alt="github"
+                                            width={50}
+                                            height={50}
+                                        />
+                                    </a>
                                     <Image
                                         src="/images/email logo.svg"
                                         alt="email"
@@ -80,12 +84,14 @@ export default function About() {
                             <div className="flex flex-col space-y-9">
                                 <p className="font-bold text-xl">Raja Pradhan</p>
                                 <div className="flex space-x-24">
-                                    <Image
-                                        src="/images/github logo.svg"
-                                        alt="github"
-                                        width={50}
-                                        height={50}
-                                    />
+                                    <a href="https://github.com/Rpradhan43" target="_blank" rel="noopener noreferrer">
+                                        <Image
+                                            src="/images/github logo.svg"
+                                            alt="github"
+                                            width={50}
+                                            height={50}
+                                        />
+                                    </a>
                                     <Image
                                         src="/images/email logo.svg"
                                         alt="email"
@@ -104,12 +110,14 @@ export default function About() {
                             <div className="flex flex-col space-y-9">
                                 <p className="font-bold text-xl">Jonathan Fagoaga</p>
                                 <div className="flex space-x-24">
-                                    <Image
-                                        src="/images/github logo.svg"
-                                        alt="github"
-                                        width={50}
-                                        height={50}
-                                    />
+                                    <a href="https://github.com/Foggy1365" target="_blank" rel="noopener noreferrer">
+                                        <Image
+                                            src="/images/github logo.svg"
+                                            alt="github"
+                                            width={50}
+                                            height={50}
+                                        />
+                                    </a>
                                     <Image
                                         src="/images/email logo.svg"
                                         alt="email"
