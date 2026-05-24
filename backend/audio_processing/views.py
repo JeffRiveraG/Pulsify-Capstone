@@ -6,6 +6,8 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import default_storage
 
+BACKEND_URL = os.environ.get('BACKEND_URL', 'http://127.0.0.1:8000')
+
 
 def home(request):
     # Not really needed
@@ -26,11 +28,11 @@ def upload_file(request):
             separator.separate_to_file(input_path, "output/")                               # Separate the stems to the output directory - output/
 
             stem_dir = os.path.join("output", os.path.splitext(audio_file.name)[0])         # Get the directory of the separated stems
-            stems = {                                                                       # List of stem files
-                "vocals": f"http://127.0.0.1:8000/{stem_dir}/vocals.wav",
-                "drums": f"http://127.0.0.1:8000/{stem_dir}/drums.wav",
-                "bass": f"http://127.0.0.1:8000/{stem_dir}/bass.wav",
-                "instrument": f"http://127.0.0.1:8000/{stem_dir}/other.wav",
+            stems = {
+                "vocals": f"{BACKEND_URL}/{stem_dir}/vocals.wav",
+                "drums": f"{BACKEND_URL}/{stem_dir}/drums.wav",
+                "bass": f"{BACKEND_URL}/{stem_dir}/bass.wav",
+                "instrument": f"{BACKEND_URL}/{stem_dir}/other.wav",
             }                 
             stem_urls = [f"http://127.0.0.1:8000/{stem_dir}/{stem}" for stem in stems]      # Create URLs for the separated stems
 
